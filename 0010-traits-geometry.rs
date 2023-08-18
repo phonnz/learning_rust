@@ -51,6 +51,12 @@ impl Perimeter for Rectangle{
     }
 }
 
+impl Perimeter for Triangle{
+    fn perimeter(&self) -> i32{
+       self.width + (self.height * 2)
+    }
+}
+
 fn main(){
     let square = Square{ width: 2, height: 2};
     let rectangle = Rectangle{width: 4, height:2};
@@ -64,4 +70,5 @@ fn main(){
     println!("Perimeter {:?}", rectangle.perimeter());
     println!("Triangle {:?} x {:?}", triangle.width, triangle.height);
     println!("Area : {:?}", triangle.area());
+    println!("Perimeter : {:?}", triangle.perimeter());
 }
