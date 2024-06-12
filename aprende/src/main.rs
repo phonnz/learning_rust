@@ -1,5 +1,8 @@
+mod messager;
+
 pub fn main() -> () {
     hello();
+    messager::message();
 }
 pub fn hello() -> &'static str {
     println!("Running...");
