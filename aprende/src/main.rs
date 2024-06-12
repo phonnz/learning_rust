@@ -1,8 +1,9 @@
-mod messager;
+mod error_handling;
+use error_handling::error_handler;
 
-pub fn main() -> () {
+pub fn main() {
     hello();
-    messager::message();
+    error_handler::file_loader();
 }
 
 pub fn hello() -> &'static str {
