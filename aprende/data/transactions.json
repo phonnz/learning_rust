@@ -1,1 +1,4 @@
-[{"from": "phonnz", "to": "somebody-else", "amount": 1008000}]
+[
+ {"from": "phonnz", "to": "somebody-else", "amount": 1008000},
+ {"from": "phonnz", "to": "dad", "amount": 5008000},
+  {"from": "phonnz", "to": "gov", "amount": "3008000"}]
