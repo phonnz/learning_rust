@@ -16,7 +16,6 @@ pub fn file_loader() {
 }
 
 fn get_transactions(fname: &str) -> Result<Vec<Transaction>, String> {
-    //    Ok(Vec::new())
     let s = match std::fs::read_to_string(fname) {
         Ok(r) => r,
         Err(e) => return Err(e.to_string()),
@@ -26,4 +25,10 @@ fn get_transactions(fname: &str) -> Result<Vec<Transaction>, String> {
         Err(e) => return Err(e.to_string()),
     };
     Ok(t)
+}
+
+fn get_transactions_b(fname: &str) -> Result<Vec<Transaction>, String> {
+    std::fs::read_to_string(fname)
+        .map_err(|e| e.to_string())
+        .and_then(|loaded| serde_json::from_str(&loaded).map_err(|e| e.to_string()))
 }
