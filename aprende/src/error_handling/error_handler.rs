@@ -4,6 +4,7 @@ use serde_derive::*;
 pub enum TransactionError {
     LoadError(std::io::Error),
     ParseError(serde_json::Error),
+    Mess(&'static str),
 }
 
 #[derive(Deserialize, Serialize, Debug)]
@@ -23,12 +24,29 @@ impl From<serde_json::Error> for TransactionError {
         TransactionError::ParseError(e)
     }
 }
-pub fn file_loader() {
+
+impl From<&'static str> for TransactionError {
+    fn from(e: &'static str) -> Self {
+        TransactionError::Mess(e)
+    }
+}
+
+pub fn all_transactions() {
     println!("Loading data!");
     let trxs = get_transactions_b("data/transactions.json").expect("Could not load transactions");
     for t in trxs {
         println!("{:?}", t);
     }
+}
+
+pub fn get_transaction_to(to_name: &str) -> Option<Transaction> {
+    let trxs = get_transactions_b("data/transactions.json").ok()?;
+    for t in trxs {
+        if t.to == to_name {
+            return Some(t);
+        }
+    }
+    None
 }
 
 fn get_transactions(fname: &str) -> Result<Vec<Transaction>, String> {
